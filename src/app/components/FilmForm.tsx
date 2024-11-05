@@ -1,68 +1,61 @@
-import {
-  Box,
-  Container,
-  InputLabel,
-  TextField,
-  Typography,
-} from '@mui/material';
-import Grid from '@mui/material/Grid2';
-import { DropDownField } from './DropDownField';
-import { useState } from 'react';
+import { Box, Container, SelectChangeEvent, Typography } from '@mui/material'
+import { ChangeEvent, useEffect, useState } from 'react'
+import { formatInput } from '../utils/utils'
+import { FilmFormData, Form } from './form/Form'
+import { Buttons } from './Buttons'
+import { validateForm } from '../utils/validateForm'
+import isEqual from 'lodash/isEqual'
 
-const initialFormData = {
+const initialFormData: FilmFormData = {
   name: '',
   genre: '',
   format: '',
   unpNumber: '',
   country: '',
-  cost: '',
+  cost: 0,
   synopsys: '',
-};
+}
 
 export function FilmForm() {
-  const [formData, setFormData] = useState(initialFormData);
-  //   const [errors, setErrors] = useState({});
-  //   const [IsNextButtonEnabled, setIsNextButtonEnabled] = useState(false);
+  const [formData, setFormData] = useState(initialFormData)
+  const [errors, setErrors] = useState<Record<string, string | undefined>>({})
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
+  const handleChange = (
+    event:
+      | SelectChangeEvent<string>
+      | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = event.target
 
-  const handleChange = (field: string, value: string | number) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
+    const formattedValue = name === 'unpNumber' ? formatInput(value) : value
+
+    if (name === 'cost') {
+      const numericValue = value.replace(/[^0-9.]/g, '')
+      const finalValue = numericValue === '' ? 0 : parseFloat(numericValue)
+      setFormData((prev) => ({ ...prev, [name]: finalValue }))
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: formattedValue }))
+    }
+
+    setErrors((prev) => ({ ...prev, [name]: '' }))
+  }
 
   return (
     <>
-      <Container>
-        <Box>
+      <Container sx={{ padding: '20px' }}>
+        <Box sx={{ display: 'flex' }}>
           <Typography variant="h4">
             Производственные параметры фильма
           </Typography>
-          <Grid size={8}>
-            <InputLabel shrink>Название проекта</InputLabel>
-            <TextField
-              placeholder="Название"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              className="small"
-              required
-            />
-            <DropDownField
-              inputLabel={'Жанр'}
-              label={'название'}
-              value={formData.genre}
-              options={['морковка', 'капуста', 'пирог', 'говно на палочке']}
-              handleChange={(event) =>
-                handleChange('genre', event.target.value)
-              }
-              name="genre"
-            />
-          </Grid>
         </Box>
+        <Form
+          formData={formData}
+          handleChange={handleChange}
+          errors={errors}
+          setErrors={setErrors}
+        />
+        {/* <Buttons formData={formData} setErrors={setErrors} errors={errors} /> */}
       </Container>
     </>
-  );
+  )
 }

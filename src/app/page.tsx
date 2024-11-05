@@ -1,10 +1,20 @@
-'use client';
-import { FilmForm } from './components/FilmForm';
+'use client'
+
+import { FilmForm } from './components/FilmForm'
+import '../app/globals.css'
+
+import localFont from 'next/font/local'
+
+const helveticaNeue = localFont({
+  src: './fonts/HelveticaNeue.woff',
+  variable: '--font-HelveticaNeue',
+  weight: '400',
+})
 
 export default function Home() {
   return (
-    <div className="dfvdfvd">
+    <main className={helveticaNeue.variable}>
       <FilmForm />
-    </div>
-  );
+    </main>
+  )
 }

@@ -6,10 +6,33 @@ export const filmSchema = z.object({
   format: z.string().min(1, 'Формат обязателен'),
   unpNumber: z
     .string()
-    .regex(/^\d{3}-\d{3}-\d{3}-\d{2}-\d{3}$/, 'Неверный формат УНФ'),
+    .optional()
+    .refine(
+      (value) => !value || /^\d{3}-\d{3}-\d{3}-\d{2}-\d{3}$/.test(value) || value === 'отсутствует',
+      {
+        message: 'Неверный формат УНФ',
+      }
+    ),
   country: z.string().min(1, 'Страна обязательна'),
   cost: z
     .number()
-    .positive('Сметная стоимость должна быть положительным числом')
+    .min(0, 'Сметная стоимость должна быть неотрицательным числом')
     .optional(),
 });
+
+export const formatInput = (input: string) => {
+  const cleanedValue = input.replace(/\D/g, ''); 
+  const limitedValue = cleanedValue.slice(0, 15);
+
+  let formattedValue = '';
+  for (let i = 0; i < limitedValue.length; i++) {
+    formattedValue += limitedValue[i];
+
+    if (i === 2 || i === 5 || i === 8 || i === 10) {
+      formattedValue += '-';
+    }
+  }
+
+  return formattedValue;
+};
+      
