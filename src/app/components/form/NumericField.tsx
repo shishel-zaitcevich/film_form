@@ -27,19 +27,19 @@ export function NumericField({
   error,
   inputLabel,
 }: NumericFieldProps) {
-  const handleNumericInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value
+  // const handleNumericInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const inputValue = e.target.value
 
-    const numericValue = inputValue.replace(/[^0-9.]/g, '')
+  //   const numericValue = inputValue.replace(/[^0-9.]/g, '')
 
-    handleChange({
-      ...e,
-      target: {
-        ...e.target,
-        value: numericValue,
-      },
-    })
-  }
+  //   handleChange({
+  //     ...e,
+  //     target: {
+  //       ...e.target,
+  //       value: numericValue,
+  //     },
+  //   })
+  // }
   return (
     <>
       <CustomLabel inputLabel={inputLabel} />

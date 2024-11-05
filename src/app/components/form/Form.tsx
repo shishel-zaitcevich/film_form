@@ -4,10 +4,7 @@ import { CustomLabel } from './CustomInputLabel'
 import { DropDownField } from './DropDownField'
 import { NumericField } from './NumericField'
 import { TextInput } from './TextField'
-import { useState, ChangeEvent, SetStateAction, useEffect } from 'react'
-import { Buttons } from '../Buttons'
-import { validateForm } from '@/app/utils/validateForm'
-import { isEqual } from 'lodash'
+import { ChangeEvent } from 'react'
 
 export interface FilmFormData {
   name: string
@@ -33,7 +30,6 @@ interface FormProps {
     unpNumber?: string
     country?: string
     cost?: string
-    synopsys?: string
   }
   setErrors: React.Dispatch<
     React.SetStateAction<Record<string, string | undefined>>
@@ -41,20 +37,6 @@ interface FormProps {
 }
 
 export function Form({ formData, handleChange, errors, setErrors }: FormProps) {
-  const [IsNextButtonEnabled, setIsNextButtonEnabled] = useState(false)
-  useEffect(() => {
-    const validation = validateForm(formData)
-
-    if (!isEqual(validation.errors, errors)) {
-      setErrors(validation.errors)
-    }
-
-    if (validation.isValid !== IsNextButtonEnabled) {
-      setIsNextButtonEnabled(validation.isValid)
-      console.log(validation.isValid)
-    }
-  }, [formData, errors, IsNextButtonEnabled])
-
   return (
     <form>
       <Box
@@ -77,16 +59,13 @@ export function Form({ formData, handleChange, errors, setErrors }: FormProps) {
             value={formData.name}
             handleChange={handleChange}
           />
-          {errors.name && <span style={{ color: 'red' }}>{errors.name}</span>}
+
           <DropDownField
             name="genre"
             inputLabel={'Жанр'}
             placeholder={'Жанр'}
             value={formData.genre}
             options={['морковка', 'капуста', 'пирог', 'говно на палочке']}
-            // handleChange={(e) =>
-            //   handleInputChange(e, formData, setFormData, setErrors)
-            // }
             handleChange={handleChange}
           />
           <DropDownField
@@ -141,13 +120,11 @@ export function Form({ formData, handleChange, errors, setErrors }: FormProps) {
             onChange={handleChange}
             multiline
             rows={6}
-            required
             className="large"
             sx={{ maxWidth: '498px', width: '100%', height: '157px' }}
           />
         </Grid>
       </Box>
-      <Buttons formData={formData} setErrors={setErrors} errors={errors} />
     </form>
   )
 }

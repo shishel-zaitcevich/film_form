@@ -1,4 +1,4 @@
-import { InputLabel, TextField } from '@mui/material'
+import { InputAdornment, InputLabel, TextField } from '@mui/material'
 import { CustomLabel } from './CustomInputLabel'
 
 interface TextFieldProps {
@@ -27,6 +27,16 @@ export function TextInput({
         value={value}
         onChange={handleChange}
         sx={{ maxWidth: '498px', width: '100%', marginBottom: '25px' }}
+        InputProps={{
+          endAdornment: error ? (
+            <InputAdornment
+              position="end"
+              style={{ color: 'red', fontSize: '0.75em' }}
+            >
+              {error} {/* */}
+            </InputAdornment>
+          ) : null,
+        }}
       />
     </>
   )

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const filmSchema = z.object({
-  title: z.string().min(1, 'Заполните поле'),
+  name: z.string().min(1, 'Заполните поле'),
   genre: z.string().min(1, 'Жанр обязателен'),
   format: z.string().min(1, 'Формат обязателен'),
   unpNumber: z
