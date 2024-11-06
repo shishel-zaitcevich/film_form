@@ -5,6 +5,7 @@ import { DropDownField } from './DropDownField'
 import { NumericField } from './NumericField'
 import { TextInput } from './TextField'
 import { ChangeEvent } from 'react'
+import { countryData, formatData, genreData } from '@/app/formData/formData'
 
 export interface FilmFormData {
   name: string
@@ -74,7 +75,7 @@ export function Form({ formData, handleChange, errors, setErrors }: FormProps) {
             inputLabel={'Жанр'}
             placeholder={'Жанр'}
             value={formData.genre}
-            options={['Приключения', 'Комедия', 'Драма', 'Документальный']}
+            options={genreData}
             handleChange={handleChange}
             error={errors.genre}
           />
@@ -86,12 +87,7 @@ export function Form({ formData, handleChange, errors, setErrors }: FormProps) {
             placeholder={'Формат'}
             value={formData.format}
             error={errors.format}
-            options={[
-              'Для онлайн-платформ',
-              'Для большого экрана',
-              'Для интернета',
-              'другое',
-            ]}
+            options={formatData}
             handleChange={handleChange}
           />
           <NumericField
@@ -109,7 +105,7 @@ export function Form({ formData, handleChange, errors, setErrors }: FormProps) {
             inputLabel={'Страна-производитель (копродукция)'}
             placeholder={'Страна'}
             value={formData.country}
-            options={['Россия', 'Китай', 'Япония', 'Казахстан']}
+            options={countryData}
             handleChange={handleChange}
             error={errors.country}
           />

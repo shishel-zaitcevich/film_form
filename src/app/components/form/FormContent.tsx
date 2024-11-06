@@ -3,6 +3,8 @@ import { FormSecond } from './FormSecond'
 import { FormThird } from './FormThird'
 import { FilmFormData } from './Form'
 import { FormFourth } from './FormFourth'
+import { SelectChangeEvent } from '@mui/material'
+import { ChangeEvent, SetStateAction } from 'react'
 
 interface FormContentProps {
   currentPage: number
@@ -32,7 +34,14 @@ const FormContent: React.FC<FormContentProps> = ({
         />
       )
     case 2:
-      return <FormSecond />
+      return (
+        <FormSecond
+          formData={formData}
+          handleChange={handleChange}
+          errors={errors}
+          setErrors={setErrors}
+        />
+      )
     case 3:
       return <FormThird />
     case 4:
