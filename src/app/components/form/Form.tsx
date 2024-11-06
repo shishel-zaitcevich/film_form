@@ -43,7 +43,9 @@ export function Form({ formData, handleChange, errors, setErrors }: FormProps) {
         sx={{
           maxWidth: '1159px',
           display: 'flex',
+          justifyContent: 'center',
           gap: '123px',
+          marginBottom: '94px',
         }}
       >
         <Grid
@@ -58,6 +60,7 @@ export function Form({ formData, handleChange, errors, setErrors }: FormProps) {
             name="name"
             value={formData.name}
             handleChange={handleChange}
+            error={errors.name}
           />
 
           <DropDownField
@@ -65,8 +68,9 @@ export function Form({ formData, handleChange, errors, setErrors }: FormProps) {
             inputLabel={'Жанр'}
             placeholder={'Жанр'}
             value={formData.genre}
-            options={['морковка', 'капуста', 'пирог', 'говно на палочке']}
+            options={['Приключения', 'Комедия', 'Драма', 'Документальный']}
             handleChange={handleChange}
+            error={errors.genre}
           />
           <DropDownField
             name="format"
@@ -75,10 +79,11 @@ export function Form({ formData, handleChange, errors, setErrors }: FormProps) {
             }
             placeholder={'Формат'}
             value={formData.format}
+            error={errors.format}
             options={[
-              'онлайн-платформ',
-              'большого экрана',
-              'интернета',
+              'Для онлайн-платформ',
+              'Для большого экрана',
+              'Для интернета',
               'другое',
             ]}
             handleChange={handleChange}
@@ -100,6 +105,7 @@ export function Form({ formData, handleChange, errors, setErrors }: FormProps) {
             value={formData.country}
             options={['Россия', 'Китай', 'Япония', 'Казахстан']}
             handleChange={handleChange}
+            error={errors.country}
           />
           <NumericField
             name="cost"
@@ -121,7 +127,14 @@ export function Form({ formData, handleChange, errors, setErrors }: FormProps) {
             multiline
             rows={6}
             className="large"
-            sx={{ maxWidth: '498px', width: '100%', height: '157px' }}
+            sx={{
+              maxWidth: '498px',
+              width: '100%',
+              height: '157px',
+              '& .MuiInputBase-input::placeholder': {
+                fontSize: '15px',
+              },
+            }}
           />
         </Grid>
       </Box>

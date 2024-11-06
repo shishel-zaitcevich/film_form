@@ -27,19 +27,6 @@ export function NumericField({
   error,
   inputLabel,
 }: NumericFieldProps) {
-  // const handleNumericInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const inputValue = e.target.value
-
-  //   const numericValue = inputValue.replace(/[^0-9.]/g, '')
-
-  //   handleChange({
-  //     ...e,
-  //     target: {
-  //       ...e.target,
-  //       value: numericValue,
-  //     },
-  //   })
-  // }
   return (
     <>
       <CustomLabel inputLabel={inputLabel} />
@@ -55,7 +42,6 @@ export function NumericField({
           marginBottom: '25px',
           '& .MuiInputBase-input::placeholder': {
             fontSize: '15px',
-            color: 'gray',
           },
         }}
         InputProps={{

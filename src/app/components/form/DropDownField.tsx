@@ -1,4 +1,5 @@
 import {
+  InputAdornment,
   InputLabel,
   MenuItem,
   Select,
@@ -38,12 +39,15 @@ export function DropDownField({
         fullWidth
         name={name}
         value={value}
-        error={Boolean(error)}
+        error={!!error}
         displayEmpty
         onChange={handleChange}
         sx={{
           '& .MuiSelect-icon': {
             display: 'none',
+          },
+          '& .MuiSelect-select span': {
+            fontSize: '15px',
           },
           marginBottom: '25px',
         }}
@@ -51,6 +55,21 @@ export function DropDownField({
           if (selected.length === 0) {
             return <Placeholder>{placeholder}</Placeholder>
           }
+          ;<>
+            {selected || <span style={{ color: '#aaa' }}>{placeholder}</span>}
+            {error && (
+              <InputAdornment
+                position="end"
+                sx={{
+                  color: 'red',
+                  fontSize: '12px',
+                  marginLeft: '8px',
+                }}
+              >
+                {error}
+              </InputAdornment>
+            )}
+          </>
           return selected
         }}
       >

@@ -4,6 +4,7 @@ import { FilmForm } from './components/FilmForm'
 import '../app/globals.css'
 
 import localFont from 'next/font/local'
+import { Header } from './components/Header'
 
 const helveticaNeue = localFont({
   src: './fonts/HelveticaNeue.woff',

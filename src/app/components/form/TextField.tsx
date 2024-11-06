@@ -1,4 +1,4 @@
-import { InputAdornment, InputLabel, TextField } from '@mui/material'
+import { InputAdornment, TextField } from '@mui/material'
 import { CustomLabel } from './CustomInputLabel'
 
 interface TextFieldProps {
@@ -18,6 +18,7 @@ export function TextInput({
   error,
   inputLabel,
 }: TextFieldProps) {
+  console.log('errorrr', error)
   return (
     <>
       <CustomLabel inputLabel={inputLabel} />
@@ -26,14 +27,27 @@ export function TextInput({
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
-        sx={{ maxWidth: '498px', width: '100%', marginBottom: '25px' }}
+        sx={{
+          maxWidth: '498px',
+          width: '100%',
+          marginBottom: '25px',
+          '& .MuiInputBase-input::placeholder': {
+            fontSize: '15px',
+          },
+        }}
+        error={!!error}
         InputProps={{
           endAdornment: error ? (
             <InputAdornment
               position="end"
-              style={{ color: 'red', fontSize: '0.75em' }}
+              sx={{
+                '& .MuiTypography-root': {
+                  color: 'red',
+                  fontSize: '12px',
+                },
+              }}
             >
-              {error} {/* */}
+              {error}
             </InputAdornment>
           ) : null,
         }}

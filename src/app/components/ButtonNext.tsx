@@ -1,8 +1,9 @@
 import { Button } from '@mui/material'
-c
+
 import { MouseEvent } from 'react'
 import { FilmFormData } from './form/Form'
 import { validateForm } from '../utils/validateForm'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 interface ButtonSubmitProps {
   formData: FilmFormData
@@ -47,18 +48,19 @@ export function ButtonNext({
         borderRadius: '41px',
         display: 'flex',
         justifyContent: 'center',
+        gap: '20px',
         textTransform: 'none',
         fontFamily: 'var(--font-HelveticaNeue)',
         paddingLeft: '40px',
+        cursor: 'pointer',
       }}
-      // endIcon={<ArrowForwardIcon sx={{ fontSize: 'large' }} />}
+      endIcon={
+        <ArrowForwardIcon
+          sx={{ fontSize: '30px', width: '30px', height: '30px' }}
+        />
+      }
     >
       Следующий шаг
-      <img
-        src="/Vector.png"
-        alt="arrow"
-        style={{ width: '16px', height: '13px', paddingLeft: '30px' }}
-      />
     </Button>
   )
 }

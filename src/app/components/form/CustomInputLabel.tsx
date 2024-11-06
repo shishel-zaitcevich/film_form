@@ -8,7 +8,7 @@ export function CustomLabel({ inputLabel }: CustomInputLabelProps) {
   const CustomInputLabel = styled(InputLabel)({
     whiteSpace: 'normal',
     color: '#1D1D1D',
-    fontSize: '15px',
+    fontSize: '16px',
     fontFamily: 'var(--font-HelveticaNeue)',
     wordWrap: 'break-word',
     opacity: '0.70',

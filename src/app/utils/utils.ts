@@ -14,6 +14,7 @@ export const filmSchema = z.object({
       }
     ),
   country: z.string().min(1, 'Страна обязательна'),
+
   cost: z
     .number()
     .min(0, 'Сметная стоимость должна быть неотрицательным числом')
