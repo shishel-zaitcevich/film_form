@@ -1,9 +1,10 @@
-import { Button } from '@mui/material'
-
 import { MouseEvent } from 'react'
-import { FilmFormData } from './form/Form'
-import { validateForm } from '../utils/validateForm'
+
+import { Button } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+
+import { validateForm } from '@/app/utils/validateForm'
+import { FilmFormData } from '../form/Form'
 
 interface ButtonSubmitProps {
   formData: FilmFormData
@@ -51,6 +52,7 @@ export function ButtonNext({
         gap: '20px',
         textTransform: 'none',
         fontFamily: 'var(--font-HelveticaNeue)',
+        fontSize: '16px',
         paddingLeft: '40px',
         cursor: 'pointer',
       }}

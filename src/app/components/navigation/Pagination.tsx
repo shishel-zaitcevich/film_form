@@ -1,14 +1,12 @@
 import React from 'react'
 
-import '../styles/PaginationStyles.scss'
-
 import Pagination from '@mui/material/Pagination'
-
 import Stack from '@mui/material/Stack'
 import PaginationItem from '@mui/material/PaginationItem'
-import { validateForm } from '../utils/validateForm'
-import { FilmFormData } from './form/Form'
 import { Typography } from '@mui/material'
+
+import { FilmFormData } from '../form/Form'
+import { validateForm } from '@/app/utils/validateForm'
 
 interface PaginationProps {
   totalPages: number

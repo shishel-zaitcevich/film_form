@@ -46,6 +46,12 @@ export function Form({ formData, handleChange, errors, setErrors }: FormProps) {
           justifyContent: 'center',
           gap: '123px',
           marginBottom: '94px',
+          '@media (max-width: 768px)': {
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '0px',
+            marginBottom: '30px',
+          },
         }}
       >
         <Grid

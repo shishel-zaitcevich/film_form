@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import { handleReset } from '../utils/resetForm'
-import ResetButton from './ResetButton'
+import ResetButton from './buttons/ResetButton'
 import { FilmFormData } from './form/Form'
 
 interface HeaderProps {
@@ -19,6 +19,12 @@ export function Header({ setFormData }: HeaderProps) {
         margin: '0 auto',
         marginBottom: '112px',
         paddingTop: '81px',
+        '@media (max-width: 768px)': {
+          minHeight: '150px',
+          flexDirection: 'column',
+          marginBottom: '30px',
+          paddingTop: '20px',
+        },
       }}
     >
       <Typography
@@ -29,6 +35,10 @@ export function Header({ setFormData }: HeaderProps) {
           fontFamily: 'Inter Tight',
           fontSize: '48px',
           fontWeight: '600',
+          '@media (max-width: 768px)': {
+            fontSize: '24px',
+            textAlign: 'center',
+          },
         }}
       >
         Производственные параметры фильма
